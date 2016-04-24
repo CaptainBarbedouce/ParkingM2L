@@ -1,0 +1,2 @@
+module ListeattenteHelper
+end
