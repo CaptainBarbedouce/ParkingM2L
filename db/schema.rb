@@ -11,6 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160424122915) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "username",               default: "Administrateur",    null: false
+    t.string   "email",                  default: "esoirot@gmail.com", null: false
+    t.string   "encrypted_password",     default: "",                  null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,                   null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+  end
+
+  add_index "admins", ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
+  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "historiques", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "listeattentes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "placeparkings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "utilisateurs", force: :cascade do |t|
+    t.string   "username",                limit: 25,                 null: false
+    t.string   "nom",                     limit: 25,                 null: false
+    t.string   "prenom",                  limit: 25,                 null: false
+    t.string   "adresse",                 limit: 50
+    t.string   "cp",                      limit: 5
+    t.string   "ville",                   limit: 50
+    t.string   "tel",                     limit: 10,                 null: false
+    t.boolean  "compte_accepted",                    default: false, null: false
+    t.boolean  "demande_reservation",                default: false, null: false
+    t.boolean  "reservation_automatique",            default: false, null: false
+    t.string   "email",                              default: "",    null: false
+    t.string   "encrypted_password",                 default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "utilisateurs", ["confirmation_token"], name: "index_utilisateurs_on_confirmation_token", unique: true
+  add_index "utilisateurs", ["email"], name: "index_utilisateurs_on_email", unique: true
+  add_index "utilisateurs", ["reset_password_token"], name: "index_utilisateurs_on_reset_password_token", unique: true
 
 end

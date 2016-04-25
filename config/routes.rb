@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :utilisateurs
-  # --->, controllers: { sessions: 'utilisateurs/sessions'}
+  devise_for :utilisateurs, controllers: { sessions: 'utilisateurs/sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  devise_scope :utilisateur do
+    root to: 'devise/sessions#new'
+  end
+
+  resources :utilisateur
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
