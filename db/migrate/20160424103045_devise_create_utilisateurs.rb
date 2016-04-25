@@ -11,10 +11,12 @@ class DeviseCreateUtilisateurs < ActiveRecord::Migration
       t.boolean :compte_accepted, default: false, null: false
       t.boolean :demande_reservation, default: false, null: false
       t.boolean :reservation_automatique, default: false, null: false
+      t.boolean :admin, default: false
+      t.references :ligues, index: true, foreign_key: true
 
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false
+      t.string :encrypted_password, null: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -34,15 +36,12 @@ class DeviseCreateUtilisateurs < ActiveRecord::Migration
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+       t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
-
-      t.timestamps null: false
     end
 
     add_index :utilisateurs, :email,                unique: true

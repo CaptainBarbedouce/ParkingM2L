@@ -1,18 +1,17 @@
-<h2>Sign up</h2>
+<h2>Créer un compte</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for @utilisateur do |f| %>
 
   <div class="field">
     <%= f.label :username %><br />
     <%= f.text_field :username, autofocus: true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :nom %><br />
     <%= f.text_field :nom, autofocus: true %>
   </div>
-  
+
   <div class="field">
     <%= f.label :prenom %><br />
     <%= f.text_field :prenom, autofocus: true %>
@@ -29,10 +28,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <%= f.label :password %><br />
+    8 charactères minimum<br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
@@ -42,8 +39,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Créer un compte" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

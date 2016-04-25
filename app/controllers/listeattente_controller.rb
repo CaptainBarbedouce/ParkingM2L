@@ -1,2 +1,0 @@
-class ListeattenteController < ApplicationController
-end

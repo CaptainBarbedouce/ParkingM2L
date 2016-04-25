@@ -57,4 +57,10 @@ class Utilisateurs::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def sign_up_params
+    params.require(:utilisateur).permit(:username, :nom, :prenom, :tel, :email, :password, :password_confirmation)
+  end
 end

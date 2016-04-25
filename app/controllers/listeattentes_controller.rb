@@ -1,0 +1,2 @@
+class ListeattentesController < ApplicationController
+end
