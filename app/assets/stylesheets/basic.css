@@ -1,0 +1,66 @@
+/* GENERAL */
+html 
+{
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body
+{
+	padding:0; 
+	padding-bottom: 3rem;
+	margin:1rem;
+	background-color: #8AACB8; 
+	font-family: Arcon, Asap,Helvetica, Arial, sans-serif; 
+	font-size: 1rem; 
+} 
+
+p 
+{
+	text-align: justify;
+}
+
+a 
+{
+	text-decoration : none;
+}
+
+h2 
+{
+	text-align: center;
+} 
+
+div 
+{
+	text-align: center;
+}
+
+/* SPECIFIC REUSABLE STUFF */
+#user 
+{
+	padding: .5rem;
+	display: inline-block; 
+	float: right; 
+	position: relative; 
+	height: 15rem; 
+	width: 15rem;
+}
+
+#user p 
+{
+	text-align: center;
+}
+
+#logo 
+{
+	height: 6rem; 
+	width: 6rem; 
+	background-image: url('../../assets/images/logo.gif');
+	background-repeat: no-repeat;
+	background-size: 100%;
+} 
