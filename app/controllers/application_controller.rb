@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def maj_listeattente
-    historiques = Historique.where(date_fin <= Date.today)
+    historiques = Historique.where(:date_fin => ["date_fin < ?", Date.today.end_of_day])
     historiques.each do |h|
       place = Placeparking.find(h.placeparking_id)
       place.occupied = false

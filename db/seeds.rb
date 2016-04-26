@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+parkingdurations_info = [
+  { maxduration: 3 }
+]
+parkingdurations_info.each do |p|
+  Parkingduration.create(p) unless Parkingduration.find_by_maxduration p[:maxduration]; 
+end

@@ -6,6 +6,8 @@ class UtilisateursController < ApplicationController
   def index
     @historique = Historique.where(utilisateurs_id: current_utilisateur)
     @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur)
+    @createhistorique = Historique.new
+    @maxduration = Parkingduration.first
     
     @choix = 0
     if @listeattente

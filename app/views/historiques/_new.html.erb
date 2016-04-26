@@ -1,0 +1,47 @@
+<!doctype html> 
+<html lang="fr-FR">
+  <head>
+  	<meta charset="utf-8">
+		<meta name="description" content="Page d'accueil du Parking M2L"> 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="../../assets/stylesheets/basic.css"> 
+    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
+    <script src="../../assets/javascripts/datepicker.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+
+    <script>
+      $(document).ready(function() {
+          return $("#datepicker").datepicker();
+      }); 
+    </script>
+
+    <% if @createhistorique.errors.any? %>
+  <div id='error_explanation'>
+    <h2>
+      <%= pluralize(@createhistorique.errors.count, 'error') %> prohibited this article
+      from being saved:
+    </h2>
+    <ul>
+      <% @createhistorique.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+  </head>
+  <body>
+  	<h5>Réservation</h5>
+  	<%= form_for @createhistorique do |f| %>
+      <%= f.label :date_debut %>
+      <%= f.date_field :date_debut , :id => "datepicker" %><br />
+
+      Durée (en mois) :
+      <%= number_field_tag :duree %>
+      ( <%= @maxduration.maxduration %> mois )<br />
+
+      <%= f.submit "Réserver" %>
+    <% end %>
+  </body>
+</html>

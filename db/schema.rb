@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160425112702) do
 
   add_index "listeattentes", ["utilisateurs_id"], name: "index_listeattentes_on_utilisateurs_id"
 
-  create_table "parkingduration", force: :cascade do |t|
+  create_table "parkingdurations", force: :cascade do |t|
     t.integer "maxduration", default: 3, null: false
   end
 
