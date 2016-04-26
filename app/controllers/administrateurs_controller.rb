@@ -1,4 +1,4 @@
-class AdministrateurController < ApplicationController
+class AdministrateursController < ApplicationController
   def index
   	@listeplace = Placeparking.all
   	@utilisateur = Utilisateur.all

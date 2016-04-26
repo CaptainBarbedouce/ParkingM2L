@@ -1,4 +1,4 @@
-class HistoriqueController < ApplicationController
+class HistoriquesController < ApplicationController
 	before_action :set_duree_max, only: [:new, :create]
   before_action :maj_listeattente, only: [:create]
 

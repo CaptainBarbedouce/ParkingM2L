@@ -1,4 +1,4 @@
-class ListeattenteController < ApplicationController
+class ListeattentesController < ApplicationController
 	before_action :set_listeattente, only: [:edit, :update, :show, :new, :create]
 
 	def new

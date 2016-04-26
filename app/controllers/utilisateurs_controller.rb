@@ -1,11 +1,11 @@
-class UtilisateurController < ApplicationController
+class UtilisateursController < ApplicationController
   before_action :set_utilisateur, only: [:edit, :update, :index]
   before_action :authorization, only: [:edit, :update]
   before_action :uselessaction, only: [:new, :create]
   
   def index
-    @historique = Historique.where(utilisateur_id: current_utilisateur)
-    @listeattente = Listeattente.find_by(utilisateur_id: current_utilisateur)
+    @historique = Historique.where(utilisateurs_id: current_utilisateur)
+    @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur)
     
     @choix = 0
     if @listeattente
@@ -22,7 +22,9 @@ class UtilisateurController < ApplicationController
   end
 
   def create
-	@utilisateur = Utilisateur.new(utilisateur_params_create)
+	  @utilisateur = Utilisateur.new(utilisateur_params_create)
+    @utilisateur.admin + true
+    @utilisateur.compte_accepted = true
     respond_to do |format|
       if @utilisateur.save
         format.html { redirect_to index_utilisateurs_path, notice: 'Nouveau compte créé.' }

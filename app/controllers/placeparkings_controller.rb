@@ -1,4 +1,4 @@
-class PlaceparkingController < ApplicationController
+class PlaceparkingsController < ApplicationController
   def index
     @listeplaces = Placeparking.all
   end
