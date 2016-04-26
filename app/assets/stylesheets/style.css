@@ -1,0 +1,121 @@
+
+html, body {
+	height: 100%;
+	position: relative; 
+	text-align: center;
+} 
+
+label 
+{
+	overflow: auto;
+} 
+
+/*#formLogin 
+{
+	margin:0 auto;
+	width: 33%;
+	padding: 1em;
+	border: 1px solid #D3D3D3; 
+	border-radius: .25rem;
+}*/ 
+
+#mdp label, #mdp label input
+{
+	width: 13rem;
+} 
+
+#adresse label, #adresse label input 
+{
+	width: 8.88rem;
+} 
+
+#adresse label[for="rue"] input
+{
+	width: 18rem;
+} 
+
+#mail label, #mail label input 
+{
+	width: 15rem;
+} 
+
+/* tout pour le wrap 
+/* pour aligner les forms contenus dans des div 
+/* pour center les boutons */
+
+#wrapedit 
+{
+	margin: 0 auto;
+	padding: 1rem;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: auto; 
+	float: left; 
+	display: inline-block; 
+	
+} 
+
+#wrapededit div 
+{ 
+	width: auto; 
+	float: left;
+	position: relative; 
+	border: 0; 
+	display: inline; 
+	font-family: Helvetica, Arial, sans-serif; 
+} 
+
+#wrapedit div form 
+{
+	float: left;
+	margin: 1rem; 
+	padding: 1rem;
+	display: inline; 
+	z-index : 1; /*placement avant*/ 
+	background: #8AACB8; 
+	text-align: center; 
+	border: solid .05rem #ffffff; 
+	border-radius: .3rem; 
+} 
+
+#wrapedit h4 
+{
+	text-align: center;
+}
+
+#wrapedit button 
+{
+	margin: 0 auto;
+} 
+
+#leftTop, #leftMid, #rightTop, #rightMid
+{
+	margin: 1rem; 
+	padding: 1rem;
+	height: 25%;
+	width: 45%; 
+	position: relative; 
+	border: solid .05rem #ffffff; 
+	border-radius: .3rem; 
+	display: block; 
+	overflow: auto;
+	float: left;
+}
+
+#wrapededit div p 
+{
+	float: left; 
+	position: relative; 
+	text-align: justify; 
+} 
+
+/*#leftTop, #leftMid 
+{
+	float: left;
+} 
+
+#rightTop, #rightMid 
+{
+	float: right;
+}*/

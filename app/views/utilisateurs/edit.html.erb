@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr-FR">
+  <head>
+  	<meta charset="utf-8"> 
+  	<meta name="description" content="Profil utilisateur du Parking M2L"> 
+  	<link rel="stylesheet" href="../../assets/stylesheets/basic.css">
+    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
+    <script type="text/javascript" src="../../assets/javascripts/fadein.js"></script>
+	<title>Profil - Parking M2L</title>
+  </head>
+
+  <body>
+    <div id="user">
+      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
+      <p>userID</p> 
+      <p>LigueID</p>
+      <input type="button" value="Retour" onClick="history.go(-1);return true;">
+    </div>
+  	<div id="logo">
+  	  <!-- pour le logo --> 
+  	  <h5></h5> 
+
+  	</div> 
+    <h2>Editer le profil</h2>
+    <script type="text/javascript" src="../../assets/javascripts/fadein.js"></script>
+    <div id="wrapedit" fadeIn="fadeIn()">
+    	<!-- Pour le 1er élément -->
+    	<div id="mdp">
+        <form id="mdp" method=""> 
+      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
+      	      <h4>Mot de passe</h4>
+      	      <label for="pw"> 
+      	      	<input type="password" placeholder="Nouveau mot de passe"> 
+      	      	<br>
+      	      	<input type="password" placeholder="Confirmer nouveau mdp">
+      	      </label>
+      	      <br>
+      	      <br>
+      	      <button type="submit">Envoyer</button>
+      	      <button type="reset">Annuler</button>    	 
+        </form>
+      </div>
+
+    	<!-- Pour le 2d élément -->
+    	<div id="adresse">
+        <form id="adresse"> 
+      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
+      	      <h4>Adresse</h4> 
+      	      <label for="rue"> 
+      	        <input type="text"  placeholder="Numéro et rue"> 
+      	      </label> 
+      	      <br>
+      	      <label for="cpville"> 
+      	        <input type="text" placeholder="Code Postal"> 
+      	        <input type="text"  placeholder="Ville">
+      	      </label>
+      	      <br>
+      	      <br> 
+      	      <button type="submit">Envoyer</button>
+      	      <button type="reset">Annuler</button> 
+      	     	  
+      	</form>
+      </div>
+
+    	<!-- Pour le 3e élément -->
+    	<div id="email">
+        <form> 
+      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
+      	  <h4>Email</h4>
+      	    <label for="email"> 
+      	      <input type="text" placeholder="Nouvel Email"> 
+      	      <br>
+      	      <input type="text" placeholder="Confirmer nouvel email">
+      	    </label> 
+      	    <br>
+      	  <br>
+      	  <button type="submit">Envoyer</button> 
+      	  <button type="reset">Annuler</button>
+      	    
+      	</form> 
+      </div>
+    </div>
+  </body>
+</html>
