@@ -1,7 +1,6 @@
 class DeviseCreateUtilisateurs < ActiveRecord::Migration
   def change
     create_table :utilisateurs do |t|
-      t.string :username, limit: 25, null: false
       t.string :nom, limit: 25, null: false
       t.string :prenom, limit: 25, null: false
       t.string :adresse, limit: 50
@@ -36,7 +35,7 @@ class DeviseCreateUtilisateurs < ActiveRecord::Migration
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-       t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts

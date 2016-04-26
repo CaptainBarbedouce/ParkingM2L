@@ -1,3 +1,14 @@
 ROCK 'N ROLL MOTHER FUCKER
 
 <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
+
+<%= @utilisateur.unconfirmed_email %>
+<%= @utilisateur.nom %>
+<%= @utilisateur.prenom %>
+<%= @utilisateur.email %>
+<%= @utilisateur.admin %>
+<%= @utilisateur.compte_accepted %>
+<%= @utilisateur.tel %>
+ID LIGUE <%= @utilisateur.ligues_id %>
+
+<%= link_to 'profil', edit_utilisateur_path(current_utilisateur) %>

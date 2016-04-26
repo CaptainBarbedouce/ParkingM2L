@@ -1,6 +1,6 @@
 class Parkingduration < ActiveRecord::Migration
   def change
-  	create_table :parkingduration do |t|
+  	create_table :parkingdurations do |t|
   	  t.integer :maxduration, default: 3, null: false
     end
   end
