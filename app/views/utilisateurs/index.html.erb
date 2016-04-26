@@ -1,14 +1,79 @@
-ROCK 'N ROLL MOTHER FUCKER
+<!doctype html> 
+<html lang="fr-FR"> 
 
-<%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Page d'accueil du Parking M2L"> 
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="../../assets/stylesheets/basic.css"> 
+    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
+    <script src="../../assets/javascripts/datepicker.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
 
-<%= @utilisateur.unconfirmed_email %>
-<%= @utilisateur.nom %>
-<%= @utilisateur.prenom %>
-<%= @utilisateur.email %>
-<%= @utilisateur.admin %>
-<%= @utilisateur.compte_accepted %>
-<%= @utilisateur.tel %>
-ID LIGUE <%= @utilisateur.ligues_id %>
+    <script>
+      $(document).ready(function() {
+      $("#datepicker").datepicker();
+      });
+    </script>
+		<title>Accueil - Admin</title>
+	</head>
 
-<%= link_to 'profil', edit_utilisateur_path(current_utilisateur) %>
+	<body>
+  <div id="user">
+    <!-- pour le login --> 
+    <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
+      <p><%= link_to '@current_utilisateur.nom @current_utilisateur.prenom', edit_utilisateur_path(current_utilisateur) %></p>
+
+      <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
+    </div>
+    <div id="logo"> 
+          <!-- pour le logo -->
+    </div> 
+    
+
+    <div id="wrapedit">
+      <div id="leftTop">
+      	<% if @choix == 0 %>
+          <%= link_to 'Réserver une palce de parking', new_historique_path %>
+        <% end %>
+        <% if @choix == 1 %>
+          <%= render 'positionlisteattente' %>
+        <% end %>
+        <% if @choix == 2 %>
+          <%= render 'placeparkingactuelle' %>
+        <% end %>
+      </div>
+
+      <div id="leftMid">
+      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
+        <p>
+          <% if @historique.present? %>
+            <table>
+              <caption><h2 class="title">Historique de la place</h2></caption>
+              <thead>
+	            <tr>
+	              <th>Date début</th> 
+	              <th>Date fin</th> 
+	              <th>Place de parking</th>
+	            </tr>
+      	      </thead> 
+              <tbody>
+                <% @historique.each do |h| %>
+                  <tr>
+	                <td><%= h.date_debut %></td>
+	                <td><%= h.date_fin %></td> 
+	                <td><%= h.placeparking.libel %></td>
+	              </tr>
+	            <% end %>
+      	      </tbody>
+            </table>
+          <% else %>
+            Votre historique est vide ...
+          <% end %>
+        </p>
+      </div>
+    </div> 
+	</body>
+</html>

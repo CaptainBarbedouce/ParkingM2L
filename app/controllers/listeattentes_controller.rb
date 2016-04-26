@@ -1,5 +1,6 @@
 class ListeattenteController < ApplicationController
-  before_action :set_listeattente, only: [:edit, :update, :show, :new, :create]
+  before_action :set_listeattente, only: [:new, :create, :show, :edit, :update]
+  before_action :authorization, :only [:new, :create, :show, :edit, :update]
 
   def new
 	@listeattente = Listeattente.new
@@ -35,6 +36,10 @@ class ListeattenteController < ApplicationController
   end
 
   private 
+
+  def authorization
+    redirect_to root_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
+  end
 
   def listeattente_params
     params.require(:listeattente).permit(:numPosition)

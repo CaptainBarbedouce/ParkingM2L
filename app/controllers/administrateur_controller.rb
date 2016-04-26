@@ -1,23 +1,18 @@
-class UtilisateursController < ApplicationController
+class AdministrateursController < ApplicationController
   before_action :set_utilisateur, only: [:index, :edit, :update, :index]
   before_action :authorization, only: [:edit, :update]
   before_action :uselessaction, only: [:new, :create]
   
   def index 
 	  @historique = Historique.where(utilisateurs_id: current_utilisateur)
-	  @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur)
-    @createhistorique = Historique.new
-    @maxduration = Parkingduration.first
+	  @listeattente = Listeattente.where(utilisateurs_id: current_utilisateur)
 	  
     @choix = 0
-    if @listeattente.present?
+    if @listeattente
       @choix = 1
-    elsif @historique.present?
+    elsif @historique
       @historique.each do |h|
-        if Date.today >= h.date_fin && Date.today <= h.date_debut
-          @choix = 2
-          @parking = h.libel
-        end
+        @choix = 2 if Date.today >= h.date_fin && Date.today <= h.date_debut
       end
     end
   end
@@ -42,6 +37,10 @@ class UtilisateursController < ApplicationController
   end
 
   def update
+    # Ces 2 lignes ci-dessous sont a commenté
+    # une fois que le compte de l'administrateur a été créé
+
+    # 
     respond_to do |format|
       if @utilisateur.nil?
         fail ActiveRecord::RecordNotFound
@@ -61,7 +60,7 @@ class UtilisateursController < ApplicationController
   end
 
   def utilisateur_params_create
-    params.require(:utilisateur).permit(:nom, :prenom, :tel, :email, 
+    params.require(:utilisateur).permit(:username, :nom, :prenom, :tel, :email, 
                                         :password, :password_confirmation, :ligues_id)
   end
 
@@ -77,7 +76,7 @@ class UtilisateursController < ApplicationController
   end
 
   def authorization
-    redirect_to root_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
+    redirect_to root_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.admin
   end
 
   def uselessaction
