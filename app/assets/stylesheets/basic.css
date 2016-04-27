@@ -2,6 +2,9 @@
 html 
 {
 	box-sizing: border-box;
+	height: 100%;
+	position: relative; 
+	text-align: center;
 }
 
 *,
@@ -13,14 +16,14 @@ html
 body
 {
 	padding:0; 
-	padding-bottom: 3rem;
+	padding-bottom: 1rem;
 	margin:1rem;
 	background-color: #8AACB8; 
 	font-family: Arcon, Asap,Helvetica, Arial, sans-serif; 
 	font-size: 1rem; 
 } 
 
-p 
+p, td 
 {
 	text-align: justify;
 }
@@ -30,14 +33,70 @@ a
 	text-decoration : none;
 }
 
-h2 
+h2, div, th 
 {
 	text-align: center;
 } 
 
-div 
+label 
 {
-	text-align: center;
+	overflow: auto; 
+} 
+
+table, table tr 
+{
+	display: table-row;
+}
+
+table 
+{
+	border: .2em solid #ffffff;
+	background: #effdfd;
+	padding: 1em;
+	border-collapse: collapse; 
+	border-radius: .3rem; 
+	overflow: scroll;
+	display: table;
+    width: 100%;
+} 
+
+tr:nth-child(even) 
+{
+	background-color: #cdebf9;
+}
+
+tr:hover 
+{
+	background-color: #abf5f5
+}
+
+td 
+{
+	padding: 1em;	
+}
+
+th 
+{
+	background: #D3D3D3; 
+	color: #000000; 
+	padding: 1em; 
+} 
+
+table thead, table tbody {
+    float: left;
+    width: 100%;
+}
+table tbody {
+    overflow: auto;
+    height: 175px;
+}
+table tr {
+    width: 100%;
+    display: table;
+    text-align: left;
+}
+table th, table td {
+    width: 33%;
 }
 
 /* SPECIFIC REUSABLE STUFF */
@@ -51,7 +110,7 @@ div
 	width: 15rem;
 }
 
-#user p 
+#user p, .title 
 {
 	text-align: center;
 }

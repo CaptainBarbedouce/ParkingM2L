@@ -4,13 +4,6 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="description" content="Page d'accueil du Parking M2L"> 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<link rel="stylesheet" href="../../assets/stylesheets/basic.css"> 
-    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
-    <script src="../../assets/javascripts/datepicker.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
 
     <script>
       $(document).ready(function() {
@@ -25,27 +18,50 @@
     <!-- pour le login --> 
     <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
       <p>Admin</p> 
-      <input type="button" value="Retour" onClick="history.go(-1);return true;">
+      <%= link_to '@current_utilisateur.nom @current_utilisateur.prenom', edit_utilisateur_path(current_utilisateur) %>
+      <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
     </div>
     <div id="logo"> 
           <!-- pour le logo -->
     </div> 
-    
-
     <div id="wrapedit">
       <div id="leftTop"> 
-      <%= render 'historiques/new' if @choix == 0 %>
-      <%= render 'listeattentes/show' if @choix == 1 %>
-      <%= render 'historiques/show' if @choix == 2 %>
+      <%= render 'reservation' if @choix == 0 %>
+      <%= render 'listeattente' if @choix == 1 %>
+      <%= render 'historique' if @choix == 2 %>
       </div>
 
       <div id="leftMid">
       <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
         <p>
-          <h5>leftMid</h5>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <% if @historique.present? %>
+            <table>
+              <caption><h2 class="title">Historique de la place</h2></caption>
+              <thead>
+              <tr>
+                <th>Date début</th> 
+                <th>Date fin</th> 
+                <th>Place de parking</th>
+              </tr>
+              </thead> 
+              <tbody>
+                <% @historique.each do |h| %>
+                  <tr>
+                  <td><%= h.date_debut %></td>
+                  <td><%= h.date_fin %></td> 
+                  <td><%= h.placeparking.libel %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            Votre historique est vide ...
+          <% end %>
         </p>
       </div>
     </div> 
 	</body>
+  <footer>
+    <%= link_to 'Panneau administrateur', administrateurs_path %>
+  </footer>
 </html>

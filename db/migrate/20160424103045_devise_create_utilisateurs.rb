@@ -1,7 +1,6 @@
 class DeviseCreateUtilisateurs < ActiveRecord::Migration
   def change
     create_table :utilisateurs do |t|
-      t.string :username, limit: 25, null: false
       t.string :nom, limit: 25, null: false
       t.string :prenom, limit: 25, null: false
       t.string :adresse, limit: 50

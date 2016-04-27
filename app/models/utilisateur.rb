@@ -9,7 +9,6 @@ class Utilisateur < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]{2,4}+\z/i
 
-  validates :username, presence: true, length: { maximum: 25 }, uniqueness: { case_sensitive: true }
   validates :nom, presence: true, length: { maximum: 25 }
   validates :prenom, presence: true, length: { maximum: 25 }
   validates :adresse, length: { maximum: 50 }

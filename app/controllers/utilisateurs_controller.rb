@@ -1,20 +1,23 @@
 class UtilisateursController < ApplicationController
-  before_action :set_utilisateur, only: [:edit, :update, :index]
+  before_action :set_utilisateur, only: [:index, :edit, :update, :index]
   before_action :authorization, only: [:edit, :update]
   before_action :uselessaction, only: [:new, :create]
   
-  def index
+  def index 
     @historique = Historique.where(utilisateurs_id: current_utilisateur)
     @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur)
     @createhistorique = Historique.new
     @maxduration = Parkingduration.first
     
     @choix = 0
-    if @listeattente
+    if @listeattente.present?
       @choix = 1
-    elsif @historique
+    elsif @historique.present?
       @historique.each do |h|
-        @choix = 2 if Date.today >= h.date_fin && Date.today <= h.date_debut
+        if Date.today >= h.date_fin && Date.today <= h.date_debut
+          @choix = 2
+          @parking = h.libel
+        end
       end
     end
   end
@@ -24,14 +27,13 @@ class UtilisateursController < ApplicationController
   end
 
   def create
-	  @utilisateur = Utilisateur.new(utilisateur_params_create)
-    @utilisateur.admin + true
-    @utilisateur.compte_accepted = true
+    @utilisateur = Utilisateur.new(utilisateur_params_create)
+    
     respond_to do |format|
       if @utilisateur.save
-        format.html { redirect_to index_utilisateurs_path, notice: 'Nouveau compte créé.' }
+        format.html { redirect_to root_path, notice: 'Nouveau compte créé.' }
       else
-        format.html { render :new, notice: 'Données invalide.' }
+        format.html { render 'utilisateurs/new', notice: 'Donnée invalide.' }
       end
     end
   end
@@ -44,7 +46,8 @@ class UtilisateursController < ApplicationController
       if @utilisateur.nil?
         fail ActiveRecord::RecordNotFound
       elsif @utilisateur.update(utilisateur_params_update)
-        format.html { redirect_to @utilisateur, notice: 'Compte mis à jour.' }
+        sign_in(@utilisateur, bypass: true)
+        format.html { redirect_to utilisateurs_path, notice: 'Compte mis à jour.' }
       else
         format.html { render :edit }
       end
@@ -58,25 +61,26 @@ class UtilisateursController < ApplicationController
   end
 
   def utilisateur_params_create
-    params.require(:utilisateur).permit(:username, :mail, :password, :password_confirmation,
-    	                                :nom, :prenom, :tel, :ligue_id)
+    params.require(:utilisateur).permit(:nom, :prenom, :tel, :email, 
+                                        :password, :password_confirmation, :ligues_id)
   end
 
   def utilisateur_params_update
-    params.require(:utilisateur).permit(:password, :password_confirmation,
-    	                                :nom, :prenom, :adresse, :cp, :ville, :tel)
+    params.require(:utilisateur).permit(:nom, :prenom, :tel, :email,
+                                        :password, :password_confirmation, 
+                                        :adresse, :cp, :ville, :admin, :compte_accepted)
   end
 
   def set_utilisateur
-  	@utilisateur = Utilisateur.find(current_utilisateur)
-  	fail ActiveRecord::RecordNotFound if @utilisateur.nil?
+    @utilisateur = current_utilisateur
+    fail ActiveRecord::RecordNotFound if @utilisateur.nil?
   end
 
   def authorization
-    redirect_to index_utilisateur_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.id == @utilisateur.id
+    redirect_to utilisateurs_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
   end
 
   def uselessaction
-    redirect_to index_utilisateur_path, notice: "Compte déjà existant." unless current_utilisateur.nil?
+    redirect_to utilisateurs_path, notice: "Compte déjà existant." unless current_utilisateur.nil?
   end
 end

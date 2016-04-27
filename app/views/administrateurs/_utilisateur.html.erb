@@ -1,0 +1,27 @@
+<table> 
+  <caption><h2 class="title">Utilisateurs</h2></caption>
+  <thead>
+	<tr>
+	  <th>Utilisateur</th> 
+	  <th>Ligue</th> 
+	  <th>Mot de passe</th>
+	  <th>Supprimer</th>
+	  <th>Autoriser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @utilisateur.each do |u| %> 
+	 <tr>
+	    <td><%= u.nom + u.prenom %></td>
+	    <td><p></p></td> 
+	    <td><%= button_tag "Réinitialiser" %></td>
+	    <td><%= button_tag "Supprimer" %></td>
+	    <td>
+	      <% unless u.compte_accepted %>
+	        <%= button_tag "Activer" %>
+	      <% end %>
+	    </td>
+	  </tr>
+    <% end %>
+  </tbody>
+</table>

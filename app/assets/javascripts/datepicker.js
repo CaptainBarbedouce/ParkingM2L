@@ -12,7 +12,6 @@ $(document).ready(function()
 		dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
 		dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
 		dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-		weekHeader: 'Sem.',
-		dateFormat: 'yy-mm-dd'
+		weekHeader: 'Sem.'
 	});
 });

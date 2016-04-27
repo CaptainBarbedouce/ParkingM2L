@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_scope :utilisateur do
     root to: 'devise/sessions#new'
   end
-  devise_for :utilisateurs, controllers: { sessions: 'utilisateurs/sessions' }
+  devise_for :utilisateurs, controllers: { registration: 'utilisateurs#new' ,sessions: 'utilisateurs/sessions' }
 
   resources :utilisateurs
   resources :historiques
   resources :listeattentes
   resources :placeparkings
   resources :administrateurs
+  resources :parkingdurations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

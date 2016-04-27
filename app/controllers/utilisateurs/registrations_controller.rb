@@ -58,9 +58,9 @@ class Utilisateurs::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  private
+ private
 
   def sign_up_params
-    params.require(:utilisateur).permit(:username, :nom, :prenom, :tel, :email, :password, :password_confirmation)
+    params.require(:utilisateur).permit(:nom, :prenom, :tel, :email, :password, :password_confirmation, :ligues_id)
   end
 end

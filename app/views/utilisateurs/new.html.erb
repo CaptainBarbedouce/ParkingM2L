@@ -3,11 +3,6 @@
 <%= form_for @utilisateur do |f| %>
 
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
-
-  <div class="field">
     <%= f.label :nom %><br />
     <%= f.text_field :nom, autofocus: true %>
   </div>
@@ -20,6 +15,11 @@
   <div class="field">
     <%= f.label :tel %><br />
     <%= f.text_field :tel, autofocus: true %>
+  </div>
+
+  <div class="field">
+    LIGUE :<br />
+   <%= f.collection_select 'ligues_id', Ligue.all, 'id', 'libel', { include_blank: 'Sélectionnez votre ligue' } %>
   </div>
 
   <div class="field">

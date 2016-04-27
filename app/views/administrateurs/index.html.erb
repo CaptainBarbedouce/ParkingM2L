@@ -1,68 +1,39 @@
-<!doctype html> 
 <html lang="fr-FR"> 
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="description" content="Page d'accueil du Parking M2L"> 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<link rel="stylesheet" href="../../assets/stylesheets/basic.css"> 
-    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
-    <script src="../../assets/javascripts/datepicker.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
 
-    <script>
-      $(document).ready(function() {
-      $("#datepicker").datepicker();
-      });
-    </script>
 		<title>Accueil - Admin</title>
 	</head>
 
 	<body>
   <div id="user">
-    <!-- pour le login --> 
-    <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
       <p>Admin</p> 
-      <input type="button" value="Retour" onClick="history.go(-1);return true;">
-    </div>
-    <div id="logo"> 
-          <!-- pour le logo -->
-    </div> 
-    
-
-    <div id="wrapedit">
-      <div id="leftTop"> 
-      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
-        <p><h5>leftTop</h5></p>
-      <!-- Datepicker js --> 
-        <p>Date: <input id="datepicker"></p>
+      <%= link_to 'Panneau utilisateur', utilisateurs_path %>
+  </div>
+  <div id="wrapedit">
+      <div id="leftTop">
+        <p>
+          <%= render 'listeattente' %>
+        </p>
       </div>
 
       <div id="leftMid">
-      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
         <p>
-          <h5>leftMid</h5>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <%= render 'utilisateur' %>
         </p>
       </div>
        
       <div id="rightTop"> 
-      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
         <p>
-          <h5>rightTop</h5>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <%= render 'placeparking' %>
         </p>
       </div>
 
       <div id="rightMid">
-      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
         <p>
-          <h5>rightMid</h5>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+          <%= render 'duration' %>
+        </p>   
       </div>
-    </div> 
-	</body>
+    </div>
 </html>

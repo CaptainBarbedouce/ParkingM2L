@@ -1,84 +1,66 @@
-<!doctype html>
-<html lang="fr-FR">
-  <head>
-  	<meta charset="utf-8"> 
-  	<meta name="description" content="Profil utilisateur du Parking M2L"> 
-  	<link rel="stylesheet" href="../../assets/stylesheets/basic.css">
-    <link rel="stylesheet" href="../../assets/stylesheets/style.css">
-    <script type="text/javascript" src="../../assets/javascripts/fadein.js"></script>
-	<title>Profil - Parking M2L</title>
-  </head>
 
-  <body>
-    <div id="user">
-      <!-- AJOUTER DU RUBY LA OU C'EST BIEN -->
-      <p>userID</p> 
-      <p>LigueID</p>
-      <input type="button" value="Retour" onClick="history.go(-1);return true;">
-    </div>
-  	<div id="logo">
-  	  <!-- pour le logo --> 
-  	  <h5></h5> 
+<h2>Profil</h2>
 
-  	</div> 
-    <h2>Editer le profil</h2>
-    <script type="text/javascript" src="../../assets/javascripts/fadein.js"></script>
-    <div id="wrapedit" fadeIn="fadeIn()">
-    	<!-- Pour le 1er élément -->
-    	<div id="mdp">
-        <form id="mdp" method=""> 
-      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
-      	      <h4>Mot de passe</h4>
-      	      <label for="pw"> 
-      	      	<input type="password" placeholder="Nouveau mot de passe"> 
-      	      	<br>
-      	      	<input type="password" placeholder="Confirmer nouveau mdp">
-      	      </label>
-      	      <br>
-      	      <br>
-      	      <button type="submit">Envoyer</button>
-      	      <button type="reset">Annuler</button>    	 
-        </form>
-      </div>
+<% if @utilisateur.errors.any? %>
+  <div id='error_explanation'>
+    <h2>
+      <%= pluralize(@utilisateur.errors.count, 'error') %> prohibited this article
+      from being saved:
+    </h2>
+    <ul>
+      <% @utilisateur.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-    	<!-- Pour le 2d élément -->
-    	<div id="adresse">
-        <form id="adresse"> 
-      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
-      	      <h4>Adresse</h4> 
-      	      <label for="rue"> 
-      	        <input type="text"  placeholder="Numéro et rue"> 
-      	      </label> 
-      	      <br>
-      	      <label for="cpville"> 
-      	        <input type="text" placeholder="Code Postal"> 
-      	        <input type="text"  placeholder="Ville">
-      	      </label>
-      	      <br>
-      	      <br> 
-      	      <button type="submit">Envoyer</button>
-      	      <button type="reset">Annuler</button> 
-      	     	  
-      	</form>
-      </div>
+<%= form_for @utilisateur do |f| %>
 
-    	<!-- Pour le 3e élément -->
-    	<div id="email">
-        <form> 
-      	<!-- AJOUTER DU RUBY LA OU C'EST BIEN DANS LES FORMS -->
-      	  <h4>Email</h4>
-      	    <label for="email"> 
-      	      <input type="text" placeholder="Nouvel Email"> 
-      	      <br>
-      	      <input type="text" placeholder="Confirmer nouvel email">
-      	    </label> 
-      	    <br>
-      	  <br>
-      	  <button type="submit">Envoyer</button> 
-      	  <button type="reset">Annuler</button>
-      	    
-      	</form> 
-      </div>
-    </div>
-  </body>
-</html>
+  <div class="field">
+    <%= f.label :nom %><br />
+    <%= f.text_field :nom, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prenom %><br />
+    <%= f.text_field :prenom, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tel %><br />
+    <%= f.text_field :tel, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    8 charactères minimum<br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+  
+  <!-- A ENLEVER APRES CREATION ADMINISTRATEUR -->
+  <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box :admin, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :compte_accepted %><br />
+    <%= f.check_box :compte_accepted, autofocus: true %>
+  </div>
+  
+  <!-- FIN -->
+  <div class="actions">
+    <%= f.submit "Editer" %>
+  </div>
+<% end %>

@@ -1,15 +1,3 @@
-
-html, body {
-	height: 100%;
-	position: relative; 
-	text-align: center;
-} 
-
-label 
-{
-	overflow: auto;
-} 
-
 /*#formLogin 
 {
 	margin:0 auto;
@@ -47,19 +35,22 @@ label
 {
 	margin: 0 auto;
 	padding: 1rem;
-	width: 100%;
-	height: 100%;
+	width: auto;
 	position: relative;
 	overflow: auto; 
-	float: left; 
+	/*float: left; */
 	display: inline-block; 
-	
+	/*width: 100%; 
+	height: 100%;*/	
 } 
+#wrapedit div, #wrapedit div form, #wrapededit div p 
+{
+	float: left;
+}
 
 #wrapededit div 
 { 
 	width: auto; 
-	float: left;
 	position: relative; 
 	border: 0; 
 	display: inline; 
@@ -68,18 +59,16 @@ label
 
 #wrapedit div form 
 {
-	float: left;
 	margin: 1rem; 
 	padding: 1rem;
 	display: inline; 
 	z-index : 1; /*placement avant*/ 
-	background: #8AACB8; 
-	text-align: center; 
+	background: #8AACB8;  
 	border: solid .05rem #ffffff; 
 	border-radius: .3rem; 
 } 
 
-#wrapedit h4 
+#wrapedit h4, #wrapedit div form 
 {
 	text-align: center;
 }
@@ -105,17 +94,6 @@ label
 
 #wrapededit div p 
 {
-	float: left; 
 	position: relative; 
 	text-align: justify; 
-} 
-
-/*#leftTop, #leftMid 
-{
-	float: left;
-} 
-
-#rightTop, #rightMid 
-{
-	float: right;
-}*/
+}

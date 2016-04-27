@@ -11,3 +11,24 @@ parkingdurations_info = [
 parkingdurations_info.each do |p|
   Parkingduration.create(p) unless Parkingduration.find_by_maxduration p[:maxduration]; 
 end
+
+ligues_info = [
+  { libel: 'Escrime' },
+  { libel: 'Equitation' },
+  { libel: "Tir à l'arc" },
+  { libel: 'Atletisme' },
+  { libel: "Basket" },
+  { libel: "Natation" },
+  { libel: "Judo" }
+]
+
+ligues_info.each do |l| Ligue.create(l) unless Ligue.find_by_libel l[:libel]; end
+
+placeparkings_info = [
+	{ libel: "01", occupied: false },
+  { libel: "02", occupied: true }
+]
+
+placeparkings_info.each do |pl|
+  Placeparking.create(pl) unless Placeparking.find_by_libel pl[:libel];
+end

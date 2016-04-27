@@ -1,0 +1,20 @@
+<h5>Historique de la place</h5>
+<table> 
+  <caption><h2 class="title">Historique de la place</h2></caption>
+  <thead>
+	<tr>
+	  <th>Date début</th> 
+	  <th>Date fin</th> 
+	  <th>Utilisateur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @historique.each do |h| %>
+	  <tr>
+	    <td><%= h.date_debut %></td>
+	    <td><%= h.date_fin %></td> 
+	    <td><%= h.utilisateur.nom %> <%= h.utilisateur.prenom %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
