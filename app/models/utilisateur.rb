@@ -20,4 +20,8 @@ class Utilisateur < ActiveRecord::Base
   validates :admin, default: false
   validates :email, uniqueness: { case_sensitive: true }, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :encrypted_password, presence: true
+  
+  def to_s
+    nom + ' ' + prenom
+  end
 end

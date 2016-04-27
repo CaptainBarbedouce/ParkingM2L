@@ -5,6 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+parkingdurations_info = [
+  { maxduration: 3 }
+]
+parkingdurations_info.each do |p|
+  Parkingduration.create(p) unless Parkingduration.find_by_maxduration p[:maxduration]; 
+end
+
 ligues_info = [
   { libel: 'Escrime' },
   { libel: 'Equitation' },
@@ -17,8 +24,11 @@ ligues_info = [
 
 ligues_info.each do |l| Ligue.create(l) unless Ligue.find_by_libel l[:libel]; end
 
-parkingdurations_info = [
-  { maxduration: 3 }
+placeparkings_info = [
+	{ libel: "01", occupied: false },
+  { libel: "02", occupied: true }
 ]
 
-parkingdurations_info.each do |p| Parkingduration.create(p) unless Parkingduration.find_by_maxduration p[:maxduration]; end
+placeparkings_info.each do |pl|
+  Placeparking.create(pl) unless Placeparking.find_by_libel pl[:libel];
+end

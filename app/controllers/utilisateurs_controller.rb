@@ -33,7 +33,7 @@ class UtilisateursController < ApplicationController
       if @utilisateur.save
         format.html { redirect_to root_path, notice: 'Nouveau compte créé.' }
       else
-        format.html { render :new, notice: 'Donnée invalide.' }
+        format.html { render 'utilisateurs/new', notice: 'Donnée invalide.' }
       end
     end
   end
@@ -77,7 +77,7 @@ class UtilisateursController < ApplicationController
   end
 
   def authorization
-    redirect_to root_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
+    redirect_to utilisateurs_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
   end
 
   def uselessaction

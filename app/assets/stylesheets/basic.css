@@ -40,8 +40,13 @@ h2, div, th
 
 label 
 {
-	overflow: auto;
+	overflow: auto; 
 } 
+
+table, table tr 
+{
+	display: table-row;
+}
 
 table 
 {
@@ -74,6 +79,7 @@ th
 {
 	background: #D3D3D3; 
 	color: #000000; 
+	padding: 1em; 
 } 
 
 table thead, table tbody {

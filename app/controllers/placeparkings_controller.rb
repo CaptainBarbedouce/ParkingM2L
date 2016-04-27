@@ -1,33 +1,30 @@
 class PlaceparkingsController < ApplicationController
-  before_action :authorization, only: [:index, :show, :edit, :update]
-
   def index
     @listeplaces = Placeparking.all
   end
   
   def show
     @placeparking = Placeparking.find(params[:id])
+    @historique = Historique.where(placeparkings_id: @placeparking)
+    render 'administrateurs/_historique'
   end
 
   def edit
+    @placeparking = placeparking.find(params[:id])
+    render 'administrateurs/_attributionmanuelleplace'
   end
 
   def update
-    historique = Historique.new(occupied: params[:occupied])
+    @placeparking = Placeparking.find(params[:id])
+    @placeparking.occupied = true 
+    @placeparking.save
+    historique = historique.new
+    historique.date_debut = DateTime.now
+    historique.utilisateurs_id = params[:utilisateur_id]
+    duree = params[:duree].to_i
+    historique.date_fin = DateTime.now + duree.months
+    historique.placeparkings_id = @placeparking.id
     historique.save
-  end
-
-  private
-
-  def authorization
-    redirect_to root_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
-  end
-
-  def listeattente_params
-    params.require(:listeattente).permit(:numPosition)
-  end
-
-  def placeparking_params
-    params.require(:placeparking).permit(:occupied)
+    redirect_to administrateurs_path
   end
 end
