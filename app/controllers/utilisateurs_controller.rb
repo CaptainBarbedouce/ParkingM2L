@@ -1,7 +1,7 @@
 class UtilisateursController < ApplicationController
   before_action :set_utilisateur, only: [:index, :edit, :update]
-  before_action :authorization, only: [:edit, :update, :destroy]
   before_action :uselessaction, only: [:new, :create]
+  before_action :authorization, only: [:edit, :update, :destroy]
   
   def index 
 	  @historique = Historique.where(utilisateurs_id: current_utilisateur.id)

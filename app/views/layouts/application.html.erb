@@ -5,6 +5,17 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <div id="user">
+    <p>
+      <%= link_to current_utilisateur, edit_utilisateur_path(current_utilisateur) %></br>
+      <%= link_to 'Profil', edit_utilisateur_path(current_utilisateur) %>
+    </p>
+
+    <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
+    </div>
+    <%= link_to utilisateurs_path do %>
+      <%= image_tag 'logo.gif' %>
+    <% end %>
 </head>
 <body>
 <p class='notice'><%= notice %></p>

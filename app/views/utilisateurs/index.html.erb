@@ -1,17 +1,5 @@
 <% if current_utilisateur.compte_accepted == true %>
   <body>
-    <div id="user">
-      <p>
-        <%= link_to current_utilisateur, edit_utilisateur_path(current_utilisateur) %></br>
-        <%= link_to 'Profil', edit_utilisateur_path(current_utilisateur) %>
-      </p>
-
-      <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
-    </div>
-    <div id="logo"> 
-        <!-- pour le logo -->
-    </div> 
-
     <div id="wrapedit">
       <div id="leftTop">
         <%= render 'reserverplaceparking' if @choix == 0 %>
