@@ -26,7 +26,7 @@ ligues_info.each do |l| Ligue.create(l) unless Ligue.find_by_libel l[:libel]; en
 
 placeparkings_info = [
 	{ libel: "01", occupied: false },
-  { libel: "02", occupied: true }
+  { libel: "02", occupied: false }
 ]
 
 placeparkings_info.each do |pl|

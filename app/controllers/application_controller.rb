@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     utilisateurs_path(current_utilisateur)
   end
 
+  def after_inactive_sign_up_path_for(resource)
+    new_utilisateurs_path
+  end
+
   def maj_listeattente
     historiques = Historique.where(:date_fin => ["date_fin < ?", Date.today.end_of_day])
     historiques.each do |h|

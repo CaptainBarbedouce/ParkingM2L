@@ -4,23 +4,17 @@
 	<tr>
 	  <th>Utilisateur</th> 
 	  <th>Ligue</th> 
-	  <th>Mot de passe</th>
+	  <th>Editer</th>
 	  <th>Supprimer</th>
-	  <th>Autoriser</th>
     </tr>
   </thead>
   <tbody>
     <% @utilisateur.each do |u| %> 
-	 <tr>
-	    <td><%= u.nom + u.prenom %></td>
-	    <td><p></p></td> 
-	    <td><%= link_to "Réinitialiser" %></td>
-	    <td><%= link_to "Supprimer" %></td>
-	    <td>
-	      <% unless u.compte_accepted %>
-	        <%= link_to "Activer" %>
-	      <% end %>
-	    </td>
+	  <tr>
+	    <td><p><%= u %></p></td>
+	    <td><p><%= u.ligue.libel %></p></td> 
+	    <td><%= link_to "Editer", edit_utilisateur_path(u.id) %></td>
+	    <td><%= link_to "Supprimer", utilisateur_path(u.id), method: 'delete' %></td>
 	  </tr>
     <% end %>
   </tbody>

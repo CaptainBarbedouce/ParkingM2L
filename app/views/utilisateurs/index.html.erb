@@ -1,56 +1,60 @@
-<head>
-	<title>Accueil - Admin</title>
-</head>
-
-<body>
-  <div id="user">
-    <p><%= link_to current_utilisateur, edit_utilisateur_path(current_utilisateur) %></p>
-
-    <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
-  </div>
-  <div id="logo"> 
-        <!-- pour le logo -->
-  </div> 
-
-  <div id="wrapedit">
-    <div id="leftTop">
-      <% if @choix == 0 %>
-        <%= link_to 'Réserver une place de parking', new_historique_path %>
-      <% end %>
-      <% if @choix == 1 %>
-        <%= render 'positionlisteattente' %>
-      <% end %>
-      <% if @choix == 2 %>
-        <%= render 'placeparkingactuelle' %>
-      <% end %>
-    </div>
-
-    <div id="leftMid">
+<% if current_utilisateur.compte_accepted == true %>
+  <body>
+    <div id="user">
       <p>
-        <% if @historique.present? %>
-          <table>
-            <caption><h2 class="title">Historique de la place</h2></caption>
-            <thead>
-	          <tr>
-	            <th>Date début</th> 
-	            <th>Date fin</th> 
-	            <th>Place de parking</th>
-	          </tr>
-      	     </thead> 
-            <tbody>
-              <% @historique.each do |h| %>
-                <tr>
-	                <td><%= h.date_debut %></td>
-	                <td><%= h.date_fin %></td> 
-	                <td><%= h.placeparking.libel %></td>
-	              </tr>
-	            <% end %>
-    	      </tbody>
-          </table>
-        <% else %>
-          Votre historique est vide ...
-        <% end %>
+        <%= link_to current_utilisateur, edit_utilisateur_path(current_utilisateur) %></br>
+        <%= link_to 'Profil', edit_utilisateur_path(current_utilisateur) %>
       </p>
+
+      <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
     </div>
-  </div> 
-</body>
+    <div id="logo"> 
+        <!-- pour le logo -->
+    </div> 
+
+    <div id="wrapedit">
+      <div id="leftTop">
+        <%= render 'reserverplaceparking' if @choix == 0 %>
+        <%= render 'positionlisteattente' if @choix == 1 %>
+        <%= render 'placeparkingactuelle' if @choix == 2 %>
+      </div>
+
+      <div id="leftMid">
+        <p>
+          <% if @historique.present? %>
+            <table>
+              <caption><h2 class="title">Historique de la place</h2></caption>
+              <thead>
+	              <tr>
+	                <th>Date début</th> 
+	                <th>Date fin</th> 
+	                <th>Place de parking</th>
+	              </tr>
+      	      </thead> 
+              <tbody>
+                <% @historique.each do |h| %>
+                  <tr>
+	                  <td><%= h.date_debut %></td>
+	                  <td><%= h.date_fin %></td> 
+	                  <td><%= h.placeparking.libel %></td>
+	                </tr>
+	              <% end %>
+    	        </tbody>
+            </table>
+          <% else %>
+            Votre historique est vide ...
+          <% end %>
+        </p>
+      </div>
+    </div> 
+  </body>
+  
+  <% unless current_utilisateur.admin == false %>
+    <footer>
+      <%= link_to 'Panneau administrateur', administrateurs_path %>
+    </footer>
+  <% end %>
+<% else %>
+  <h1> Votre compte est en attente de validation de la part d'un administrateur </h1>
+  <%= link_to 'Déconnexion', destroy_utilisateur_session_path, class: "mv-item-deconnect", method: :delete %>
+<% end %>

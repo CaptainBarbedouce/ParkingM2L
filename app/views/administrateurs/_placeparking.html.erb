@@ -9,23 +9,23 @@
     </tr>
   </thead>
   <tbody>
-    <%= @listeplace.each do |p| %>
-	<tr>
-	  <td><%= p.libel %></td>
-	  <td> 
-	    <% if p.occupied %>
-	      Occupé
-	    <% else %>
-	      Libre
-	    <% end%>
-	  </td> 
-	  <td> <%= link_to "Voir", placeparking_path(p.id) %></td>
-	  <td>
-        <% if p.occupied == false %>
-          <%= link_to "Attribuer", edit_placeparking_path(p.id) %>
-        <% end %>
-	  </td>
-	</tr>
+    <% @listeplace.each do |p| %>
+	  <tr>
+	    <td><%= p.libel %></td>
+	    <td> 
+	      <% if p.occupied %>
+	        Occupé
+	      <% else %>
+	        Libre
+	      <% end%>
+	    </td> 
+	    <td> <%= link_to "Voir", placeparking_path(p.id) %></td>
+	    <td>
+          <% if p.occupied == false %>
+            <%= link_to "Attribuer", edit_placeparking_path(p.id) %>
+          <% end %>
+	    </td>
+	  </tr>
 	<% end %>
   </tbody>
 </table>

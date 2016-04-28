@@ -1,65 +1,7 @@
-<h2>Profil</h2>
-
-<% if @utilisateur.errors.any? %>
-  <div id='error_explanation'>
-    <h2>
-      <%= pluralize(@utilisateur.errors.count, 'error') %> prohibited this article
-      from being saved:
-    </h2>
-    <ul>
-      <% @utilisateur.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+<% if @user_to_edit == current_utilisateur %>
+  <%= render 'editersonprofile' %>
+<% else %>
+  <%= render 'editionadministrateur' %>
 <% end %>
-
-<%= form_for @utilisateur do |f| %>
-
-  <div class="field">
-    <%= f.label :nom %><br />
-    <%= f.text_field :nom, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :prenom %><br />
-    <%= f.text_field :prenom, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tel %><br />
-    <%= f.text_field :tel, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    8 charactères minimum<br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-  
-  <!-- A ENLEVER APRES CREATION ADMINISTRATEUR -->
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :compte_accepted %><br />
-    <%= f.check_box :compte_accepted, autofocus: true %>
-  </div>
-  
-  <!-- FIN -->
-  <div class="actions">
-    <%= f.submit "Editer" %>
-  </div>
-<% end %>
+</br>
+<%= link_to 'Retour', utilisateurs_path %>

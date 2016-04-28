@@ -1,1 +1,8 @@
 <h5>Attribution manuelle de Place de Parking</h5>
+
+
+Place de parking : <%= @placeparking.libel %>
+<%= form_tag placeparking_path(@placeparking.id), method: 'patch' do |h| %>
+  Utilisateur : <%= select_tag 'utilisateurs_id', options_from_collection_for_select(Utilisateur.where(demande_reservation: false), 'id', 'nom'), { include_blank: "Sélectionnez votre l'utilisateur" } %></br>
+  <%= submit_tag 'Attribuer' %>
+<% end %>

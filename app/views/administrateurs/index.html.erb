@@ -8,32 +8,32 @@
 
 	<body>
   <div id="user">
-      <p>Admin</p> 
-      <%= link_to 'Panneau utilisateur', utilisateurs_path %>
+    <p>Admin</p> 
+    <%= link_to 'Panneau utilisateur', utilisateurs_path %>
   </div>
   <div id="wrapedit">
-      <div id="leftTop">
-        <p>
-          <%= render 'listeattente' %>
-        </p>
-      </div>
-
-      <div id="leftMid">
-        <p>
-          <%= render 'utilisateur' %>
-        </p>
-      </div>
-       
-      <div id="rightTop"> 
-        <p>
-          <%= render 'placeparking' %>
-        </p>
-      </div>
-
-      <div id="rightMid">
-        <p>
-          <%= render 'duration' %>
-        </p>   
-      </div>
+    <div id="leftTop">
+      <p>
+        <%= render 'listeattente' %>
+      </p>
     </div>
+
+    <div id="leftMid">
+      <p>
+        <%= render 'utilisateur' %>
+      </p>
+    </div>
+       
+    <div id="rightTop"> 
+      <p>
+        <%= render 'placeparking' %>
+      </p>
+    </div>
+
+    <div id="rightMid">
+      <p>
+        <%= render 'duration' %>
+      </p>   
+    </div>
+  </div>
 </html>

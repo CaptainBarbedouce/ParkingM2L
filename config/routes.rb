@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     root to: 'devise/sessions#new'
   end
   
-  devise_for :utilisateurs, controllers: { registration: 'utilisateurs#new' ,sessions: 'utilisateurs/sessions' }
+  devise_for :utilisateurs, controllers: { registrations: 'utilisateurs' ,sessions: 'utilisateurs/sessions' }
 
   resources :utilisateurs
   resources :historiques

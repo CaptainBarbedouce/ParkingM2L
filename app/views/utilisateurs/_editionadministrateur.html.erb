@@ -1,0 +1,17 @@
+<h2>Profil de <%= @utilisateur_to_edit %></h2>
+
+
+  <%= form_for @utilisateur_to_edit do |f| %>
+    <div class="field">
+      <%= f.label 'Valider le Compte' %><br />
+      <%= f.check_box :compte_accepted, autofocus: true %>
+    </div>
+    <div>
+      Réinitialiser mot de passe
+      <%= check_box_tag :reset_password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Editer" %>
+    </div>
+  <% end %>
+

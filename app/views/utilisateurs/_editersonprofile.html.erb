@@ -1,4 +1,18 @@
-<h2>Créer un compte</h2>
+<h2>Profil</h2>
+
+<% if @utilisateur.errors.any? %>
+  <div id='error_explanation'>
+    <h2>
+      <%= pluralize(@utilisateur.errors.count, 'error') %> prohibited this article
+      from being saved:
+    </h2>
+    <ul>
+      <% @utilisateur.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= form_for @utilisateur do |f| %>
 
@@ -18,11 +32,6 @@
   </div>
 
   <div class="field">
-    LIGUE :<br />
-   <%= f.collection_select 'ligues_id', Ligue.all, 'id', 'libel', { include_blank: 'Sélectionnez votre ligue' } %>
-  </div>
-
-  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -37,10 +46,20 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Créer un compte" %>
+  
+  <!-- A ENLEVER APRES CREATION ADMINISTRATEUR -->
+  <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box :admin, autofocus: true %>
   </div>
 
-  <%= link_to "Se connecter", root_path %>
+  <div class="field">
+    <%= f.label :compte_accepted %><br />
+    <%= f.check_box :compte_accepted, autofocus: true %>
+  </div>
+  
+  <!-- FIN -->
+  <div class="actions">
+    <%= f.submit "Editer" %>
+  </div>
 <% end %>

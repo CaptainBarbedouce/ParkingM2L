@@ -10,7 +10,8 @@ class PlaceparkingsController < ApplicationController
   end
 
   def edit
-    @placeparking = placeparking.find(params[:id])
+    @placeparking = Placeparking.find(params[:id])
+    @historique = Historique.new
     render 'administrateurs/_attributionmanuelleplace'
   end
 
@@ -18,9 +19,9 @@ class PlaceparkingsController < ApplicationController
     @placeparking = Placeparking.find(params[:id])
     @placeparking.occupied = true 
     @placeparking.save
-    historique = historique.new
+    historique = Historique.new
     historique.date_debut = DateTime.now
-    historique.utilisateurs_id = params[:utilisateur_id]
+    historique.utilisateurs_id = params[:utilisateurs_id]
     duree = params[:duree].to_i
     historique.date_fin = DateTime.now + duree.months
     historique.placeparkings_id = @placeparking.id
