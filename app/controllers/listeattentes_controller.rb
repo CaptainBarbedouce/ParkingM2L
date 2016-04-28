@@ -1,46 +1,40 @@
 class ListeattentesController < ApplicationController
-  before_action :set_listeattente, only: [:edit, :update, :show, :new, :create]
-
-  def new
-    @listeattente = Listeattente.new
-  end
-
-  def create
-    @listeattente = Utilisateur.new(listeattente_params)
-      respond_to do |format|
-        if @listeattente.save
-          format.html { redirect_to index_utilisateur_path, notice: "Mise en liste d'attente" }
-        else
-          format.html { render :new }
-        end
-      end
-  end
-  
-  def show
-  end
+  before_action :set_listeattente, only: [:edit, :update]
+  before_filter :authorization
 
   def edit
+    @listeattentes = Listeattente.all
+    @listeattentes = 1 unless @listeattentes
+    render 'administrateurs/editerlisteattente'
   end
 
   def update
-      respond_to do |format|
-       if @listeattente.nil?
-          fail ActiveRecord::RecordNotFound
-        elsif @listeattente.update(listeattente_params)
-          format.html { redirect_to index_administrateur_path, notice: 'Position mise à jour.' }
-        else
-          format.html { render :edit }
-        end
+    placelibre = Listeattente.where.not(utilisateurs_id: @listeattente.utilisateurs_id)
+    placelibre = placelibre.where(numPosition: ["numPosition > ?", @listeattente.numPosition])
+    
+    unless placelibre.empty?
+      placelibre.each do |l|
+        l.numPosition += 1
+        l.save
       end
+    end
+
+    @listeattente.numPosition = listeattente_params[:numPosition]
+    @listeattente.save
+    redirect_to administrateurs_path, notice: "Liste d'attente mise à jour"
   end
 
   private 
 
+  def authorization
+    redirect_to utilisateurs_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted
+  end
+  
   def listeattente_params
-      params.require(:listeattente).permit(:numPosition)
+    params.require(:listeattente).permit(:numPosition)
   end
 
   def set_listeattente
-      @listeattente = Listeattente.find_by(utilisateur_id: current_utilisateur)
+    @listeattente = Listeattente.find(params[:id])
   end
 end

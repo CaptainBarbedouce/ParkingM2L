@@ -8,7 +8,7 @@ class DeviseCreateUtilisateurs < ActiveRecord::Migration
       t.string :ville, limit: 50
       t.string :tel, limit: 10, null: false
       t.boolean :compte_accepted, default: false, null: false
-      t.boolean :demande_reservation, default: false, null: false
+      t.boolean :demande_reservation, default: true, null: false
       t.boolean :reservation_automatique, default: false, null: false
       t.boolean :admin, default: false
       t.references :ligues, index: true, foreign_key: true

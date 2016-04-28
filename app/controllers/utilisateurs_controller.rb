@@ -4,19 +4,19 @@ class UtilisateursController < ApplicationController
   before_action :uselessaction, only: [:new, :create]
   
   def index 
-	  @historique = Historique.where(utilisateurs_id: current_utilisateur)
-	  @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur)
+	  @historique = Historique.where(utilisateurs_id: current_utilisateur.id)
+	  @listeattente = Listeattente.find_by(utilisateurs_id: current_utilisateur.id)
     @createhistorique = Historique.new
     @maxduration = Parkingduration.first
 	  
     @choix = 0
     if @listeattente.present?
       @choix = 1
-    elsif @historique.present?
+    elsif current_utilisateur.demande_reservation == false
       @historique.each do |h|
-        if Date.today >= h.date_fin && Date.today <= h.date_debut
+        if DateTime.now >= h.date_debut && DateTime.now <= h.date_fin
           @choix = 2
-          @parking = h.libel
+          @parking = h.placeparking.libel
         end
       end
     end
@@ -45,7 +45,7 @@ class UtilisateursController < ApplicationController
   def update
     @utilisateur_to_edit = Utilisateur.find(params[:id]) if params[:id]
     respond_to do |format|
-      if @utilisateur_to_edit.id != current_utilisateur && current_utilisateur.admin
+      if @utilisateur_to_edit.id != current_utilisateur.id && current_utilisateur.admin
         if params[:reset_password]
           @utilisateur_to_edit.send_reset_password_instructions
           if @utilisateur_to_edit.save

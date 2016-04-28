@@ -20,7 +20,7 @@
     <%= f.date_field :date_debut , :id => "datepicker" %><br />
 
     Durée (en mois) :
-    <%= number_field_tag :duree %>
+    <%= number_field_tag :duree, nil, within: 1...@maxduration.maxduration + 1 %>
     ( <%= @maxduration.maxduration %> mois )<br />
 
     <%= f.submit "Réserver" %>

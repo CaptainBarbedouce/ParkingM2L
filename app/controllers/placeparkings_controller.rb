@@ -1,4 +1,6 @@
 class PlaceparkingsController < ApplicationController
+  before_filter :authorization
+
   def index
     @listeplaces = Placeparking.all
   end
@@ -6,26 +8,35 @@ class PlaceparkingsController < ApplicationController
   def show
     @placeparking = Placeparking.find(params[:id])
     @historique = Historique.where(placeparkings_id: @placeparking)
-    render 'administrateurs/_historique'
+    render 'administrateurs/historique'
   end
 
   def edit
     @placeparking = Placeparking.find(params[:id])
     @historique = Historique.new
-    render 'administrateurs/_attributionmanuelleplace'
+    render 'administrateurs/attributionmanuelleplace'
   end
 
   def update
+    dureemax = Parkingduration.first
     @placeparking = Placeparking.find(params[:id])
     @placeparking.occupied = true 
     @placeparking.save
     historique = Historique.new
     historique.date_debut = DateTime.now
     historique.utilisateurs_id = params[:utilisateurs_id]
-    duree = params[:duree].to_i
-    historique.date_fin = DateTime.now + duree.months
+    historique.date_fin = DateTime.now + dureemax.maxduration.months
     historique.placeparkings_id = @placeparking.id
     historique.save
-    redirect_to administrateurs_path
+    utilisateur_to_edit = Utilisateur.find(params[:utilisateurs_id])
+    utilisateur_to_edit.demande_reservation = false
+    utilisateur_to_edit.save
+    redirect_to administrateurs_path, notice: 'Place attribuée'
+  end
+
+  private
+
+  def authorization
+    redirect_to utilisateurs_path, notice: "Vous ne pouvez pas faire cela." unless current_utilisateur.compte_accepted && current_utilisateur.admin
   end
 end

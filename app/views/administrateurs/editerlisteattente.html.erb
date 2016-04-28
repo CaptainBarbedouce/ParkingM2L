@@ -1,0 +1,6 @@
+<p>Editer cette place</p>
+Nom de l'utilisateur : <%= @listeattente.utilisateur.nom %> <%= @listeattente.utilisateur.prenom %>
+<%= form_for @listeattente do |l| %>
+  <div><%= l.number_field :numPosition, within: 1...@listeattentes.size + 1 %></div>
+  <div><%= l.submit 'Editer' %></div>
+<% end %>

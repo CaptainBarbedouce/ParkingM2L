@@ -3,15 +3,17 @@
   <thead>
 	<tr>
 	  <th>Position</th> 
-	  <th>Utilisateur</th> 
+	  <th>Utilisateur</th>
+	  <th>Editer</th>
     </tr>
   </thead>
   <tbody>
-  <% @listeattente.each do |l| %>
-	<tr>
-	  <td><%= text_field_tag :posistion, nil, placeholder: l.numPosition %></td>
-	  <td><%= l.utilisateur.username %></td> 
-	</tr>
+	<% @listeattente.each do |l| %>
+	   <tr>
+        <td><%= l.numPosition %></td>
+        <td><%= l.utilisateur.nom %> <%= l.utilisateur.prenom %></td>
+        <td><%= link_to 'Editer', edit_listeattente_path(l.id) %></td>
+	  </tr>
 	<% end %>
   </tbody>
 </table>

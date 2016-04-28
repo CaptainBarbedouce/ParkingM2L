@@ -14,18 +14,23 @@ class ApplicationController < ActionController::Base
   end
 
   def maj_listeattente
-    historiques = Historique.where(:date_fin => ["date_fin < ?", Date.today.end_of_day])
+    historiques = Historique.where(:date_fin => ["date_fin < ?", DateTime.now.end_of_day])
     historiques.each do |h|
-      place = Placeparking.find(h.placeparking_id)
+      place = Placeparking.find(h.placeparkings_id)
       place.occupied = false
       place.save
+      utilisateur_to_edit = Utilisateur.find(h.utilisateurs_id)
+      utilisateur_to_edit.demande_reservation = true
+      utilisateur_to_edit.save
     end
+
     placelibre = Placeparking.where(occupied: false)
+    
     unless placelibre.empty?
       placelibre.each do |p|
         premier = Listeattente.find_by(numPosition: 1)
         if premier
-          historique = Historique.new(utilisateur_id: premier.utilisateur_id, placeparking_id: p.id, date_debut: Date.today, date_fin: Date.today + premier.duration.months)
+          historique = Historique.new(utilisateur_id: premier.utilisateurs_id, placeparking_id: p.id, date_debut: DateTime.now, date_fin: DateTime.now + premier.duration.months)
           historique.save
           listeattente = Listeattente.all
           listeattente.each do |l|
