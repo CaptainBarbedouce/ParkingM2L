@@ -2,7 +2,7 @@ class Utilisateur < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :rememberable, :validatable
   
   belongs_to :ligue, :class_name => "Ligue", :foreign_key => "ligues_id"
   has_many :historiques

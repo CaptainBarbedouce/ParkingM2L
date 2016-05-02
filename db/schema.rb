@@ -66,13 +66,8 @@ ActiveRecord::Schema.define(version: 20160425112702) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
   end
 
-  add_index "utilisateurs", ["confirmation_token"], name: "index_utilisateurs_on_confirmation_token", unique: true
   add_index "utilisateurs", ["email"], name: "index_utilisateurs_on_email", unique: true
   add_index "utilisateurs", ["ligues_id"], name: "index_utilisateurs_on_ligues_id"
   add_index "utilisateurs", ["reset_password_token"], name: "index_utilisateurs_on_reset_password_token", unique: true
